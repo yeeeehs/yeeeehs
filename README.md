@@ -3,7 +3,7 @@
 <a href="mailto:leeihs122@gmail.com"><img src="https://img.shields.io/badge/leeihs122@gmail.com-222222?style=flat&logo=gmail&logoColor=white" /></a>
 <a href="https://github.com/yeeeehs"><img src="https://img.shields.io/badge/yeeeehs-222222?style=flat&logo=github&logoColor=white" /></a>
 
-웹 · 앱 개발을 공부하는 학생
+웹 · 앱 개발을 배우고 있는 학생입니다
 
 <br/>
 
