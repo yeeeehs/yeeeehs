@@ -13,7 +13,7 @@
 
 <div align="center">
 
-### 💻 Tech Stack 💻
+### 📚 배우고 있는 기술 📚
 
 <img height="28" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" />
 <img height="28" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" />
