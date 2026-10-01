@@ -3,10 +3,7 @@
 <a href="https://github.com/yeeeehs"><img src="https://img.shields.io/badge/yeeeehs-222222?style=flat&logo=github&logoColor=white" /></a>
 
 <!-- 자기소개: 자유롭게 바꾸세요 -->
-안녕하세요! 웹과 모바일 앱을 만드는 **개발자 이현서**입니다.<br/>
-React Native부터 Spring까지, 프론트엔드와 백엔드를 함께 다루고 있어요.
-
-현재 **같이가요** 프로젝트를 진행하고 있습니다.
+안녕하세요, **이현서**입니다.
 
 <br/>
 
