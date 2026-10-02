@@ -18,7 +18,7 @@ INFO = [
 CONTACT = [
     ("GitHub", "github.com/yeeeehs"),
 ]
-FOOTER = "// 오늘도 배우는 중"
+FOOTER = ""
 
 # 색상
 BG, ART, TEXT, KEY, VALUE, DOTS, MUTED = "#1c2128", "#c9d1d9", "#c9d1d9", "#d2a8ff", "#a5d6ff", "#636e7b", "#768390"
@@ -74,7 +74,7 @@ lines += [kv(0, k, v) for k, v in INFO]
 lines.append(rule(0, "- Contact"))
 lines += [kv(0, k, v) for k, v in CONTACT]
 lines.append(rule(0))
-n = len(lines) + 1
+n = len(lines) + (1 if FOOTER else 0)
 info_h = n * INFO_LH
 
 H = max(art_h, info_h) + PAD * 2
@@ -91,8 +91,9 @@ for builder in ([lambda y: rule(y, HEADER)]
     info.append(builder(y))
     y += INFO_LH
 fw = cells(FOOTER) * INFO_CW
-info.append(f'<text x="{info_x + info_w - fw:.1f}" y="{y:.1f}" fill="{MUTED}" textLength="{fw:.1f}" '
-            f'lengthAdjust="spacingAndGlyphs">{escape(FOOTER)}</text>')
+if FOOTER:
+    info.append(f'<text x="{info_x + info_w - fw:.1f}" y="{y:.1f}" fill="{MUTED}" textLength="{fw:.1f}" '
+                f'lengthAdjust="spacingAndGlyphs">{escape(FOOTER)}</text>')
 
 art_top = (H - art_h) / 2 + ART_LH * 0.8
 art_svg = []
