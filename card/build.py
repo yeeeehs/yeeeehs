@@ -15,9 +15,7 @@ INFO = [
     ("Tools", "Node.js, Git, GitHub"),
     ("Project", "같이가요"),
 ]
-CONTACT = [
-    ("GitHub", "github.com/yeeeehs"),
-]
+CONTACT = []  # 예: [("GitHub", "github.com/yeeeehs")] — 비워두면 Contact 섹션이 사라져요
 FOOTER = ""
 
 # 색상
@@ -69,13 +67,13 @@ art_w, art_h = art_cols * ART_CW, len(art) * ART_LH
 info_x = PAD + art_w + 36
 info_w = INFO_COLS * INFO_CW
 
-lines = [rule(0, HEADER)]
-lines += [kv(0, k, v) for k, v in INFO]
-lines.append(rule(0, "- Contact"))
-lines += [kv(0, k, v) for k, v in CONTACT]
-lines.append(rule(0))
-n = len(lines) + (1 if FOOTER else 0)
-info_h = n * INFO_LH
+builders = [lambda y: rule(y, HEADER)]
+builders += [lambda y, k=k, v=v: kv(y, k, v) for k, v in INFO]
+if CONTACT:
+    builders.append(lambda y: rule(y, "- Contact"))
+    builders += [lambda y, k=k, v=v: kv(y, k, v) for k, v in CONTACT]
+builders.append(lambda y: rule(y))
+info_h = (len(builders) + (1 if FOOTER else 0)) * INFO_LH
 
 H = max(art_h, info_h) + PAD * 2
 W = info_x + info_w + PAD
@@ -83,11 +81,7 @@ info_top = (H - info_h) / 2 + INFO_LH * 0.75
 
 info = []
 y = info_top
-for builder in ([lambda y: rule(y, HEADER)]
-                + [lambda y, k=k, v=v: kv(y, k, v) for k, v in INFO]
-                + [lambda y: rule(y, "- Contact")]
-                + [lambda y, k=k, v=v: kv(y, k, v) for k, v in CONTACT]
-                + [lambda y: rule(y)]):
+for builder in builders:
     info.append(builder(y))
     y += INFO_LH
 fw = cells(FOOTER) * INFO_CW
