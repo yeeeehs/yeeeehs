@@ -10,15 +10,12 @@ HEADER = "yeeeehs@github"
 INFO = [
     ("Name", "이현서"),
     ("Status", "Learning (student)"),
-    ("School", "OO대학교 OO학과"),
-    ("Focus", "Web & App"),
     ("Languages", "JavaScript, TypeScript, Java"),
     ("Frameworks", "React, React Native, Spring"),
     ("Tools", "Node.js, Git, GitHub"),
     ("Project", "같이가요"),
 ]
 CONTACT = [
-    ("Email", "leeihs122@gmail.com"),
     ("GitHub", "github.com/yeeeehs"),
 ]
 FOOTER = "// 오늘도 배우는 중"
