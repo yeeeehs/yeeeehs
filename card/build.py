@@ -89,12 +89,34 @@ if FOOTER:
     info.append(f'<text x="{info_x + info_w - fw:.1f}" y="{y:.1f}" fill="{MUTED}" textLength="{fw:.1f}" '
                 f'lengthAdjust="spacingAndGlyphs">{escape(FOOTER)}</text>')
 
+# shade.txt(선택): 글자마다 0~9 밝기 — 있으면 글자색을 회색 단계로 칠해서 입체감을 줌
+shade_path = os.path.join(HERE, "shade.txt")
+shade = open(shade_path, encoding="utf-8").read().split("\n") if os.path.exists(shade_path) else None
+
+
+def gray(d):
+    v = round(0x55 + (0xf0 - 0x55) * int(d) / 9)
+    return f"#{v:02x}{v:02x}{v:02x}"
+
+
+def art_line(i, l):
+    if not shade:
+        return escape(l)
+    out, s = [], shade[i]
+    start = 0
+    for j in range(1, len(l) + 1):
+        if j == len(l) or s[j] != s[start]:
+            out.append(f'<tspan fill="{gray(s[start])}">{escape(l[start:j])}</tspan>')
+            start = j
+    return "".join(out)
+
+
 art_top = (H - art_h) / 2 + ART_LH * 0.8
 art_svg = []
 for i, l in enumerate(art):
     if l.strip():
         art_svg.append(f'<text x="{PAD}" y="{art_top + i * ART_LH:.1f}" textLength="{len(l) * ART_CW:.1f}" '
-                       f'lengthAdjust="spacingAndGlyphs" xml:space="preserve">{escape(l)}</text>')
+                       f'lengthAdjust="spacingAndGlyphs" xml:space="preserve">{art_line(i, l)}</text>')
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W:.0f}" height="{H:.0f}" viewBox="0 0 {W:.0f} {H:.0f}">
 <rect width="100%" height="100%" rx="12" fill="{BG}"/>
